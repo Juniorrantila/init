@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TEMPLATE=$INIT_TEMPLATE
+
+if [ ! -z "$1" -a "$1" != " " ]; then
+   $TEMPLATE=$1
+fi
+
+git clone $TEMPLATE .
+rm -rf .git
+git init
