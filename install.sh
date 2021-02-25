@@ -1,3 +1,3 @@
-#/bin/bash
+#!/bin/bash
 
 install init /usr/local/bin
