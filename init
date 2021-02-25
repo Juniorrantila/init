@@ -1,11 +1,19 @@
 #!/bin/bash
 
-TEMPLATE=$INIT_TEMPLATE
-
+success=0
 if [ ! -z "$1" -a "$1" != " " ]; then
-   $TEMPLATE=$1
+   echo "Cloning $1"
+   git clone $1 . && success=1
+else
+   echo "Cloning $INIT_TEMPLATE_1"
+   git clone $INIT_TEMPLATE_1 . && success=1
+   if [ $? != 0 ]; then
+      echo "Cloning $INIT_TEMPLATE_2"
+      git clone $INIT_TEMPLATE_2 . && success=1
+   fi
 fi
 
-git clone $TEMPLATE .
-rm -rf .git
-git init
+if [ success ]; then
+   rm -rf .git
+   git init
+fi
